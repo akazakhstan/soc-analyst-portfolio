@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital World Clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .clocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+        }
+
+        .clock {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .clock:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .timezone {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .time {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Digital World Clock</h1>
+        <div class="clocks-grid">
+            <div class="clock">
+                <div class="timezone">New York (EST)</div>
+                <div class="time" id="ny">00:00:00</div>
+            </div>
+            <div class="clock">
+                <div class="timezone">London (GMT)</div>
+                <div class="time" id="london">00:00:00</div>
+            </div>
+            <div class="clock">
+                <div class="timezone">Paris (CET)</div>
+                <div class="time" id="paris">00:00:00</div>
+            </div>
+            <div class="clock">
+                <div class="timezone">Dubai (GST)</div>
+                <div class="time" id="dubai">00:00:00</div>
+            </div>
+            <div class="clock">
+                <div class="timezone">Tokyo (JST)</div>
+                <div class="time" id="tokyo">00:00:00</div>
+            </div>
+            <div class="clock">
+                <div class="timezone">Sydney (AEDT)</div>
+                <div class="time" id="sydney">00:00:00</div>
+            </div>
+            <div class="clock">
+                <div class="timezone">Los Angeles (PST)</div>
+                <div class="time" id="la">00:00:00</div>
+            </div>
+            <div class="clock">
+                <div class="timezone">Singapore (SGT)</div>
+                <div class="time" id="singapore">00:00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateClocks() {
+            const timezones = {
+                'ny': 'America/New_York',
+                'london': 'Europe/London',
+                'paris': 'Europe/Paris',
+                'dubai': 'Asia/Dubai',
+                'tokyo': 'Asia/Tokyo',
+                'sydney': 'Australia/Sydney',
+                'la': 'America/Los_Angeles',
+                'singapore': 'Asia/Singapore'
+            };
+
+            for (const [id, timezone] of Object.entries(timezones)) {
+                const now = new Date();
+                const time = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
+                const hours = String(time.getHours()).padStart(2, '0');
+                const minutes = String(time.getMinutes()).padStart(2, '0');
+                const seconds = String(time.getSeconds()).padStart(2, '0');
+                
+                document.getElementById(id).textContent = `${hours}:${minutes}:${seconds}`;
+            }
+        }
+
+        // Update clocks immediately and then every second
+        updateClocks();
+        setInterval(updateClocks, 1000);
+    </script>
+</body>
+</html>

@@ -16,23 +16,64 @@ Splunk tutorialdata, sourcetype=www1/secure
 
 ## SPL Search
 ```spl
-index=main sourcetype=www1/secure "Failed password"
-| rex "from (?<src_ip>\d{1,3}(?:\.\d{1,3}){3})"
+## Investigation Queries
+
+### Query 1 – Identify Top Source IPs
+```spl
+index=main sourcetype="www1/secure" "Failed password"
+| rex "(?<src_ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
 | stats count by src_ip
 | sort - count
 ```
+Purpose: Identify the IP addresses generating the highest number of failed SSH authentication attempts.
+
+### Query 2 – Investigate Suspicious IP
+```spl
+index=main sourcetype="www1/secure" "Failed password"
+| rex "(?<src_ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
+| search src_ip="87.194.216.51"
+```
+Purpose: Review the failed login attempts associated with the identified source IP and determine which usernames were targeted.
+
+### Query 3 – Analyze targeted usernames
+```spl
+index=main sourcetype="www1/secure" "Failed password"
+| rex "Failed password for (invalid user )?(?<target_user>\S+) from (?<src_ip>\d{1,3}(?:\.\d{1,3}){3})"
+| search src_ip="87.194.216.51"
+| stats count by target_user
+| sort - count
+```
+Purpose: Extract and count the usernames targeted by the suspicious source IP to understand which accounts were attacked most frequently.
 
 ## Findings
 
-- Multiple failed SSH login attempts were observed.
-- Source IP: 194.8.74.23
-- Target service: SSH
-- Event type: Failed password authentication
-- Pattern suggests possible brute-force activity.
+- Source IP: 87.194.216.51
+- Generated 10,428 failed SSH authentication attempts.
+- The IP produced the highest number of failed login events in the dataset.
+- Multiple usernames were targeted, including:
+  - testing
+  - mantis
+  - elena_andubasquet
+  - squid
+  - mailman
+  - info
+- Repeated authentication failures were observed across many different accounts.
+
+## Evidence
+
+### Top Source IPs
+
+Screenshot showing the highest-volume failed SSH login sources.
+
+### Failed Login Attempts from 87.194.216.51
+
+Screenshot showing repeated failed authentication attempts against multiple usernames.
 
 ## SOC Analyst Conclusion
 
-This activity may indicate an SSH brute-force attack against the target system.
+The source IP 87.194.216.51 exhibited behavior consistent with an SSH brute-force or password-spraying attack.
+
+The IP generated 10,428 failed authentication attempts and targeted multiple user accounts. Based on the volume and pattern of activity, the source should be considered highly suspicious and investigated further.
 
 ## Recommendation
 

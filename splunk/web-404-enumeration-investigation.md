@@ -4,7 +4,7 @@
 Investigate web server 404 errors to identify reconnaissance or enumeration attempts.
 
 ## Dataset
-Splunk tutorialdata, sourcetype=access_combined
+Splunk tutorialdata, sourcetype=access_combined_wcookie
 
 ## SPL Search
 ```spl
@@ -16,7 +16,7 @@ index=main sourcetype=access_combined status=404
 
 ## Finding
 
-Multiple 404 errors detected from IP 192.168.1.5 requesting various URI paths including:
+Multiple 404 errors were detected from IP 192.168.1.5 requesting various URI paths, including:
 - `/admin`
 - `/backup`
 - `/config`

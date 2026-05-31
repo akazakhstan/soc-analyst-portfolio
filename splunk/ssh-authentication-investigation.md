@@ -48,7 +48,7 @@ Purpose:
 
 Screenshot:
 
-`01-top-failed-login-ips.png`
+![Top Failed Login IPs](../screenshots/splunk/01-top-failed-login-ips.png)
 
 ---
 
@@ -82,7 +82,7 @@ Examples of targeted usernames:
 
 Screenshot:
 
-`02-targeted-usernames.png`
+![Targeted Usernames](../screenshots/splunk/02-targeted-usernames.png)
 
 ---
 
@@ -125,7 +125,7 @@ All successful logins originated from internal private-address hosts in the 10.x
 
 Screenshot:
 
-`03-successful-login-sources.png`
+![Successful Login Sources](../screenshots/splunk/03-successful-login-sources.png)
 
 ---
 
@@ -154,8 +154,7 @@ Successful authentication activity was limited to three internal users and three
 
 Screenshot:
 
-`04-user-ip-correlation.png`
-
+![User IP Correlation](../screenshots/splunk/04-user-ip-correlation.png)
 ---
 
 ## Findings

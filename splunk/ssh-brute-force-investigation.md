@@ -15,7 +15,7 @@ Splunk tutorialdata, sourcetype=www1/secure
 5. Reviewed the most active IP addresses for suspicious behavior.
 
 ## SPL Search
-```spl
+
 ## Investigation Queries
 
 ### Query 1 – Identify Top Source IPs

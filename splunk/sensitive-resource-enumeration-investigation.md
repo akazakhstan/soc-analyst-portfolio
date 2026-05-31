@@ -35,7 +35,7 @@ index=main sourcetype=access_combined_wcookie method=POST
 Screenshot:
 
 ```markdown
-![Top POST Endpoints](../screenshots/01-post-endpoints.png)
+![Top POST Endpoints](../screenshots/splunk/01-post-endpoints.png)
 ```
 
 Purpose:

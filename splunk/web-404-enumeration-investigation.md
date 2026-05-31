@@ -41,28 +41,34 @@ Purpose: Determine which resources were repeatedly requested by the client.
 ## Findings
 
 * Client IP: 87.194.216.51
-* Generated a large number of HTTP 404 responses.
-* Frequently requested missing resources including:
+* Generated 220 HTTP 404 (Not Found) responses.
+* Produced the highest number of 404 events in the dataset.
+* Frequently requested resources that were unavailable on the server, including:
 
   * /hidden/anna_nicole.html
   * /numa/numa.html
   * /passwords.pdf
   * /rush/signals.zip
-  * /stuff/logo.ico
-* Multiple requests targeted resources that were not available on the server.
+  * Multiple product-related pages that returned HTTP 404 responses.
+* Several resources were requested repeatedly, suggesting automated activity or persistent attempts to access unavailable content.
+
+## Evidence
+
+### Top 404 Client IPs
+
+![Top 404 Client IPs](../screenshots/splunk/web404-top-client-ips.png)
+
+### Requested URIs
+
+![Requested URIs](../screenshots/splunk/web404-requested-uris.png)
 
 ## SOC Analyst Conclusion
 
-The client generated a significant number of requests resulting in HTTP 404 responses.
+The client IP 87.194.216.51 generated the highest volume of HTTP 404 responses observed in the dataset.
 
-The activity may indicate automated browsing, web crawling, broken links, or potential reconnaissance activity. Additional investigation is required before classifying the activity as malicious.
+The client repeatedly requested resources that were not available on the server, including hidden pages, archived content, and downloadable files. While this activity may indicate automated browsing, web crawling, or reconnaissance behavior, additional investigation would be required to determine malicious intent.
 
-## Recommendations
-
-* Monitor the client IP for additional suspicious behavior.
-* Review successful requests (HTTP 200 responses) from the same IP.
-* Correlate activity with other web logs and authentication events.
-* Investigate whether similar URI requests were observed from other client IPs.
+The activity should be monitored and correlated with other web requests from the same source IP.
 
 ```
 ```

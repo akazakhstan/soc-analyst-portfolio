@@ -34,9 +34,7 @@ index=main sourcetype=access_combined_wcookie method=POST
 
 Screenshot:
 
-```markdown
 ![Top POST Endpoints](../screenshots/splunk/01-post-endpoints.png)
-```
 
 Purpose:
 
@@ -58,9 +56,7 @@ index=main sourcetype=access_combined_wcookie method=POST
 
 Screenshot:
 
-```markdown
 ![Normalized POST Endpoints](../screenshots/splunk/02-cleaned-post-endpoints.png)
-```
 
 Finding:
 
@@ -94,9 +90,7 @@ Result:
 
 Screenshot:
 
-```markdown
 ![passwords.pdf Analysis](../screenshots/splunk/03-passwords-pdf-analysis.png)
-```
 
 Finding:
 
@@ -125,9 +119,7 @@ Result:
 
 Screenshot:
 
-```markdown
 ![anna_nicole Analysis](../screenshots/splunk/04-hidden-anna-nicole-analysis.png)
-```
 
 Finding:
 
@@ -156,9 +148,7 @@ Result:
 
 Screenshot:
 
-```markdown
 ![signals.zip Analysis](../screenshots/splunk/05-rush-signals-analysis.png)
-```
 
 Finding:
 
@@ -182,9 +172,7 @@ index=main sourcetype=access_combined_wcookie
 
 Screenshot:
 
-```markdown
 ![Top Scanner IPs](../screenshots/splunk/06-top-scanner-ips.png)
-```
 
 Notable IP addresses:
 

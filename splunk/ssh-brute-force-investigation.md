@@ -61,13 +61,17 @@ Purpose: Extract and count the usernames targeted by the suspicious source IP to
 
 ## Evidence
 
-### Top Source IPs
+### Top Source IP Analysis
 
-Screenshot showing the highest-volume failed SSH login sources.
+![Top Source IPs](../screenshots/splunk/ssh-bruteforce-top-source-ips.png)
 
-### Failed Login Attempts from 87.194.216.51
+### Failed Login Events
 
-Screenshot showing repeated failed authentication attempts against multiple usernames.
+![Failed Login Events](../screenshots/splunk/ssh-bruteforce-raw-events.png)
+
+### Targeted Usernames
+
+![Targeted Usernames](../screenshots/splunk/ssh-bruteforce-targeted-usernames.png)
 
 ## SOC Analyst Conclusion
 
